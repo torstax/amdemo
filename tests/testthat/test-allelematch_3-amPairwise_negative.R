@@ -67,15 +67,15 @@ test_that("Validation of arguments to amPairwise() is working", {
 
   # Use the valid amdata to test blocking of other invalid arguments:
   {
-    expect_error(amPairwise(amdata, missingMethod = 0),   "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amPairwise(amdata, missingMethod = 3),   "allelematch:  missingMethod must equal 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = 0),   regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = 3),   regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
     expect_error(amPairwise(amdata, missingMethod = NULL),"argument is of length zero")
-    expect_error(amPairwise(amdata, missingMethod = NA),  "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amPairwise(amdata, missingMethod = "2.0"), "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amPairwise(amdata, missingMethod = " 2"), "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amPairwise(amdata, missingMethod = "2 "), "allelematch:  missingMethod must equal 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = NA),  regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = "2.0"), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = " 2"), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = "2 "), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
     expect_error(amPairwise(amdata, missingMethod = 2,0),  must_be_amDataset)
-    expect_error(amPairwise(amdata, missingMethod = 2.000000000000001), "allelematch:  missingMethod must equal 1 or 2")
+    expect_error(amPairwise(amdata, missingMethod = 2.000000000000001), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
 
     expect_snapshot_value(amdata, style = "json2")
 

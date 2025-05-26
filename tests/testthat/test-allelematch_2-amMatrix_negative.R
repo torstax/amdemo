@@ -27,14 +27,14 @@ test_that("Validation of arguments to amMatrix() is working", {
   {
     amdata = amdataMini
     expect_error(amMatrix(amdata, missingNoneExisting =2), "unused argument")  
-    expect_error(amMatrix(amdata, missingMethod = 0),   "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amMatrix(amdata, missingMethod = 3),   "allelematch:  missingMethod must equal 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = 0),   regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = 3),   regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
     expect_error(amMatrix(amdata, missingMethod = NULL),"argument is of length zero")
-    expect_error(amMatrix(amdata, missingMethod = NA),  "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amMatrix(amdata, missingMethod = "2.0"), "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amMatrix(amdata, missingMethod = " 2"), "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amMatrix(amdata, missingMethod = "2 "), "allelematch:  missingMethod must equal 1 or 2")
-    expect_error(amMatrix(amdata, missingMethod = 2.000001), "allelematch:  missingMethod must equal 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = NA),  regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = "2.0"), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = " 2"), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = "2 "), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
+    expect_error(amMatrix(amdata, missingMethod = 2.000001), regexp="allelematch:  missingMethod must equal( 0,)? 1 or 2")
 
     expect_snapshot_value(amdata, style = "json2")
   }
