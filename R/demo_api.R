@@ -133,8 +133,8 @@ demoList <- function(verbose=TRUE) {
         cat("\nTests by functions in allelematch:\n")
         print(grep("^allelematch", all, value=TRUE, perl=TRUE), width=50)
 
-        cat("\nReproduction of the examples in 'allelematchSuppDoc.pdf':\n")
-        print(grep("^amExample", all, value=TRUE, perl=TRUE))
+        # cat("\nReproduction of the examples in 'allelematchSuppDoc.pdf':\n")
+        # print(grep("^amExample", all, value=TRUE, perl=TRUE))
 
         cat("\nOther:\n")
         print(grep("^allelematch|^amExample", all, value=TRUE, invert=TRUE, perl=TRUE))
