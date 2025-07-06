@@ -38,10 +38,10 @@ test_that("Demo minComparableLoci for amCluster() on loci with two alleles each"
     "The focal genotype F1 has one incomparable locus: L1. This is because ";
     "both alleles L1a and L1b have NA data (coded as -99).";
     " "
-    "Note that we request the default multilocusMap which will be c(1,1,2,2,3,3)";
+    "Note that we request the default lociMap which will be c(1,1,2,2,3,3)";
     " ";
     print.amDataset(
-      ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, multilocusMap = TRUE))})
+      ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = TRUE))})
 
   expect_snapshot({
     "Here minComparableLoci = 3 => No genotypes are comparable."
@@ -90,10 +90,10 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "Locus L1 is incomparable because its only allele L1g has NA data "
     "(coded as -99)."
     " "
-    "Note the new parameter multilocusMap to amDataset():"
+    "Note the new parameter lociMap to amDataset():"
     " ";
     print.amDataset(
-      focal <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, multilocusMap = c(1,2,2,3,3)))})
+      focal <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
 
   # Comparison sample:
@@ -124,10 +124,10 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "Genotypes C3 to C7 have other incomparable loci than L1. This will decrease"
     "the number of comparable loci when comparing with F1."
     " "
-    "Note the new parameter 'multilocusMap' to amDataset():"
+    "Note the new parameter 'lociMap' to amDataset():"
     " ";
     print.amDataset(
-      ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, multilocusMap = c(1,2,2,3,3)))})
+      ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
   expect_snapshot({
     "Here minComparableLoci = 3 => No genotypes are comparable."
@@ -149,9 +149,6 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     summary.amCluster(
       clu_0 <- amCluster(ds, minComparableLoci = 0)
     )})
-
-# browser()
-# clu_2 <- amCluster(ds, minComparableLoci = 2)
 
   expect_snapshot({
     "Here minComparableLoci = 2 => genotype C3 to c7 are incomparable towards F1,"

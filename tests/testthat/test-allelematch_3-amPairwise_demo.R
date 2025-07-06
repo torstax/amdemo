@@ -109,10 +109,10 @@ test_that("Demo minComparableLoci for amPairwise() with first locus sigle-allele
     "Locus L1 is incomparable because its only allele L1g has NA data "
     "(coded as -99)."
     " "
-    "Note the new parameter multilocusMap to amDataset():"
+    "Note the new parameter lociMap to amDataset():"
     " ";
     print.amDataset(
-      focal <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, multilocusMap = c(1,2,2,3,3)))})
+      focal <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
 
   # Comparison sample:
@@ -138,10 +138,10 @@ test_that("Demo minComparableLoci for amPairwise() with first locus sigle-allele
     "Genotypes C3 to C7 have other incomparable loci than L1. This will decrease"
     "the number of comparable loci when comparing with F1."
     " "
-    "Note the new parameter 'multilocusMap' to amDataset():"
+    "Note the new parameter 'lociMap' to amDataset():"
     " ";
     print.amDataset(
-      comparison <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, multilocusMap = c(1,2,2,3,3)))})
+      comparison <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
   expect_snapshot({
     "Here minComparableLoci = 3 => No genotypes are comparable."

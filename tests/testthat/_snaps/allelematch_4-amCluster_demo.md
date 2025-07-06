@@ -29,10 +29,10 @@
       # The focal genotype F1 has one incomparable locus: L1. This is because 
       # both alleles L1a and L1b have NA data (coded as -99).
       #  
-      # Note that we request the default multilocusMap which will be c(1,1,2,2,3,3)
+      # Note that we request the default lociMap which will be c(1,1,2,2,3,3)
       #  
       print.amDataset(ds <- amDataset(sample, indexColumn = 1, metaDataColumn = 2,
-        multilocusMap = TRUE))
+        lociMap = TRUE))
     Output
       allelematch
       amDataset object
@@ -62,6 +62,7 @@
       Missing data matching method: 2
       Clustered genotypes consensus method: 1
       Hierarchical clustering method: complete
+      Limit on NA loci (minComparableLoci): 3
       Dynamic tree cutting height (cutHeight): 0.3
       
       Run until only singletons: TRUE
@@ -174,6 +175,7 @@
       Missing data matching method: 2
       Clustered genotypes consensus method: 1
       Hierarchical clustering method: complete
+      Limit on NA loci (minComparableLoci): 2
       Dynamic tree cutting height (cutHeight): 0.3
       
       Run until only singletons: TRUE
@@ -213,10 +215,10 @@
       # Locus L1 is incomparable because its only allele L1g has NA data 
       # (coded as -99).
       #  
-      # Note the new parameter multilocusMap to amDataset():
+      # Note the new parameter lociMap to amDataset():
       #  
       print.amDataset(focal <- amDataset(sample, indexColumn = 1, metaDataColumn = 2,
-        multilocusMap = c(1, 2, 2, 3, 3)))
+        lociMap = c(1, 2, 2, 3, 3)))
     Output
       allelematch
       amDataset object
@@ -239,10 +241,10 @@
       # Genotypes C3 to C7 have other incomparable loci than L1. This will decrease
       # the number of comparable loci when comparing with F1.
       #  
-      # Note the new parameter 'multilocusMap' to amDataset():
+      # Note the new parameter 'lociMap' to amDataset():
       #  
       print.amDataset(ds <- amDataset(sample, indexColumn = 1, metaDataColumn = 2,
-        multilocusMap = c(1, 2, 2, 3, 3)))
+        lociMap = c(1, 2, 2, 3, 3)))
     Output
       allelematch
       amDataset object
@@ -277,6 +279,7 @@
       Missing data matching method: 2
       Clustered genotypes consensus method: 1
       Hierarchical clustering method: complete
+      Limit on NA loci (minComparableLoci): 3
       Dynamic tree cutting height (cutHeight): 0.3
       
       Run until only singletons: TRUE
@@ -434,6 +437,7 @@
       Missing data matching method: 2
       Clustered genotypes consensus method: 1
       Hierarchical clustering method: complete
+      Limit on NA loci (minComparableLoci): 2
       Dynamic tree cutting height (cutHeight): 0.3
       
       Run until only singletons: TRUE

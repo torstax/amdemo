@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(amregtest)
+library(amdemo)
 
-test_check("amregtest")
+test_check("amdemo")

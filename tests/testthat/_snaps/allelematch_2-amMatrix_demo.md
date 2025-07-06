@@ -95,10 +95,10 @@
     Code
       # Create a minimal data set with 3 loci where the first only has one allele.
       #  
-      # Note the new parameter multilocusMap to amDataset:
+      # Note the new parameter lociMap to amDataset:
       #  
       print.amDataset(ds <- amDataset(sample, indexColumn = 1, metaDataColumn = 2,
-        multilocusMap = c(1, 2, 2, 3, 3)))
+        lociMap = c(1, 2, 2, 3, 3)))
     Output
       allelematch
       amDataset object

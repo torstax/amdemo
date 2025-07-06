@@ -1,6 +1,6 @@
 Package: amdemo
 Title: Runs Allelematch Test Driven Design
-Version: 1.0.0.9005
+Version: 1.0.0.9007
 Authors@R: c(
     person("Department of Wildlife, Fish and Environmental Studies at Swedish University of Agricultural Sciences", role = "cph"),
     person("Göran", "Spong", , "Goran.Spong@slu.se", role = "cph",
