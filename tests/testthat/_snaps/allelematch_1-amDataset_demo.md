@@ -1,12 +1,17 @@
-# Demo minComparableLoci for amCluster() on loci with two alleles each
+# Demo amDataset() support for new param minComparableLoci
 
     Code
+      # Please continue to allelematch_2-amMatrix_demo.md to see minComparableLoci
+      # properly demonstrated.
+      #  
       # The new support for parameter minComparableLoci in amDataset()
-      # is demonstrated in the tests below.
+      # is indirect.
       #  
       # The main new feature of amDataset() is the new parameter lociMap.
       #  
       # But support for cloning an existing amDataset object has also been added.
+      #  
+      # These two new features are demonstrated below.
       #  
       library(allelematch)
 
