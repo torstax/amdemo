@@ -3,21 +3,21 @@ test_that("Demo minComparableLoci for amCluster() on loci with two alleles each"
 
 
   expect_snapshot({
-    "The new parameter minComparableLoci is demonstrated in the tests below.";
-    " ";
-    "minComparableLoci is here passed to the function amCluster().";
-    " ";
-    "amCluster() performs a pairwise matching analysis of a focal ";
-    "multilocus genotype dataset. For each genotype in the focal dataset ";
-    "all genotypes in the comparison genotype are returned that match at or above ";
-    "a threshold matching score.";
-    " ";
-    "minComparableLoci lowers the matching score to 0 for pairs of genotypes ";
-    "that don't have enough comparable loci.";
-    " ";
-    "A loci is incomparable if all alleles in it have NA data for any of the two";
-    "compared genotypes.";
-    " ";
+    "The new parameter minComparableLoci is demonstrated in the tests below."
+    " "
+    "minComparableLoci is here passed to the function amCluster()."
+    " "
+    "amCluster() performs a pairwise matching analysis of a focal "
+    "multilocus genotype dataset. For each genotype in the focal dataset "
+    "all genotypes in the comparison genotype are returned that match at or above "
+    "a threshold matching score."
+    " "
+    "minComparableLoci lowers the matching score to 0 for pairs of genotypes "
+    "that don't have enough comparable loci."
+    " "
+    "A loci is incomparable if all alleles in it have NA data for any of the two"
+    "compared genotypes."
+    " "
     library(allelematch)})
 
   # Comparison sample:
@@ -30,16 +30,16 @@ test_that("Demo minComparableLoci for amCluster() on loci with two alleles each"
   colnames(sample) <- miniColnames
 
   expect_snapshot({
-    "We first create a minimal focal data set with ?? genotype rows (F1, C1, C2)";
-    "and 6 allele columns.";
-    " ";
-    "The alleles are grouped pairwise in three loci (L1, L2 and L3).";
-    " ";
-    "The focal genotype F1 has one incomparable locus: L1. This is because ";
-    "both alleles L1a and L1b have NA data (coded as -99).";
+    "We first create a minimal focal data set with ?? genotype rows (F1, C1, C2)"
+    "and 6 allele columns."
     " "
-    "Note that we request the default lociMap which will be c(1,1,2,2,3,3)";
-    " ";
+    "The alleles are grouped pairwise in three loci (L1, L2 and L3)."
+    " "
+    "The focal genotype F1 has one incomparable locus: L1. This is because "
+    "both alleles L1a and L1b have NA data (coded as -99)."
+    " "
+    "Note that we request the default lociMap which will be c(1,1,2,2,3,3)"
+    " "
     print.amDataset(
       ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = TRUE))})
 
@@ -47,16 +47,16 @@ test_that("Demo minComparableLoci for amCluster() on loci with two alleles each"
     "Here minComparableLoci = 3 => No genotypes are comparable."
     "This means that all genotype gets 100% dissimilarity towards all others."
     "Therefore we don't find any matches:"
-    " ";
+    " "
     summary.amCluster(
       clu_3 <- amCluster(ds, minComparableLoci = 3))})
 
   expect_snapshot({
     "Here minComparableLoci = 0 => Backwards compatible with allelematch 2.5.4."
-    " ";
+    " "
     "Here all genotypes are comparable with each other and we get backward"
     "compatible number of matches:"
-    " ";
+    " "
     summary.amCluster(
       clu_0 <- amCluster(ds, minComparableLoci = 0)
     )})
@@ -67,7 +67,7 @@ test_that("Demo minComparableLoci for amCluster() on loci with two alleles each"
     " "
     "Note that the the the comparable genotypes (C1) still get the same matching score"
     "compared to the abowe backwards compatible run where minComparableLoci = 0:"
-    " ";
+    " "
     summary.amCluster(
       clu_2 <- amCluster(ds, minComparableLoci = 2))})
 
@@ -91,7 +91,7 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "(coded as -99)."
     " "
     "Note the new parameter lociMap to amDataset():"
-    " ";
+    " "
     print.amDataset(
       focal <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
@@ -125,7 +125,7 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "the number of comparable loci when comparing with F1."
     " "
     "Note the new parameter 'lociMap' to amDataset():"
-    " ";
+    " "
     print.amDataset(
       ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = c(1,2,2,3,3)))})
 
@@ -133,18 +133,18 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "Here minComparableLoci = 3 => No genotypes are comparable."
     "This means that all genotype gets 100% dissimilarity towards all others."
     "Therefore we don't find any matches:"
-    " ";
+    " "
     summary.amCluster(
       clu_3 <- amCluster(ds, minComparableLoci = 3))})
 
   expect_snapshot({
     "Here minComparableLoci = 0 => Backwards compatible with allelematch 2.5.4."
-    " ";
+    " "
     "Here all genotypes are comparable with each other and we get backward"
     "compatible number of matches:"
-    " ";
+    " "
     "Note that C7 with all NA/-99 data scores pretty high:"
-    " ";
+    " "
     # browser() ;
     summary.amCluster(
       clu_0 <- amCluster(ds, minComparableLoci = 0)
@@ -157,7 +157,7 @@ test_that("Demo minComparableLoci for amCluster() with first locus sigle-allele"
     "Note that the comparable genotypes (C1 and C2, tagged 'Good') still"
     "get the same matching score compared to the abowe backwards compatible run "
     "where minComparableLoci = 0:"
-    " ";
+    " "
     summary.amCluster(
       clu_2 <- amCluster(ds, minComparableLoci = 2))})
 
