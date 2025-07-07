@@ -14,6 +14,10 @@ printViaCsv <- function(x) {
   # Drop some unnecessary columns:
   df[c("matchThreshold", "alleleMismatch", "cutHeight")] <- list(NULL)
 
+  # Format 'Psib' and 'score' with 2 decimal places (as character columns)
+  df$Psib  <- format(round(df$Psib, 2), nsmall = 2)
+  df$score <- format(round(df$score, 2), nsmall = 2)
+
   # ... and print:
   cat("\n", sep="")
   print(df, row.names=FALSE)
@@ -21,6 +25,7 @@ printViaCsv <- function(x) {
 
 
 test_that("Demo minComparableLoci for amUnique() on loci with two alleles each", {
+  withr::local_options(width=200) # Allow longer lines for the summaries:
 
   expect_snapshot({
     "The new parameter minComparableLoci is demonstrated in the tests below."
@@ -31,8 +36,8 @@ test_that("Demo minComparableLoci for amUnique() on loci with two alleles each",
     "based on their dissimilarity score (see amMatrix)."
     "Psib, probability that two samples are siblings, is also calculated."
     " ";
-    "minComparableLoci raises the dissimilarity to 100% for pairs of genotypes ";
-    "that don't have enough comparable loci."
+    "minComparableLoci causes both Psib and score to become NA ";
+    "for pairs of genotypes that don't have enough comparable loci."
     " "
     "A loci is incomparable if all alleles in it have NA data for any of the two";
     "compared genotypes."
@@ -46,7 +51,7 @@ test_that("Demo minComparableLoci for amUnique() on loci with two alleles each",
   #
   miniColnames  = c("IND","META","L1a","L1b","L2a","L2b","L3a","L3b")
   sample = t(data.frame(
-      c("F1","Focal",-99,-99,"X","Y","X","Y"), # One incomparable locus
+      c("F1","Focal",-99,-99,"X","Y","X","z"), # One incomparable locus
       c("C1","Good", -99,-99,"X","Y","X","Y"), # Same incomparable locus => no effect
       c("C2","Bad",  "X","Y",-99,-99,"X","Y")  # Another incomparable locus => incomparable genotypes
   ))
@@ -69,9 +74,6 @@ test_that("Demo minComparableLoci for amUnique() on loci with two alleles each",
     print.amDataset(
     ds <- amDataset(sample,indexColumn = 1, metaDataColumn = 2, lociMap = TRUE))})
 
-# browser()
-# u_3 <- amUnique(ds, cutHeight = 0.3, minComparableLoci = 3, verbose = FALSE)
-# stop("Done DEBUGing")
 
   expect_snapshot({
     "Here minComparableLoci = 3 => No genotypes are comparable."
@@ -92,7 +94,7 @@ test_that("Demo minComparableLoci for amUnique() on loci with two alleles each",
 
   expect_snapshot({
     "Here minComparableLoci = 2 => genotype C2 is incomparable towards the other genotypes"
-    "(dissimilarity == 1 == 100%)"
+    "(dissimilarity == 1 == 100%), but still comparable towards itself."
     " "
     "Note that the the dissimilarities between the other genotypes remain the same"
     "compared to the abowe run where minComparableLoci = 0:"
@@ -103,13 +105,14 @@ test_that("Demo minComparableLoci for amUnique() on loci with two alleles each",
 })
 
 test_that("Demo minComparableLoci for amUnique() with one sigle-allele locus", {
+  withr::local_options(width=200) # Allow longer lines for the summaries:
 
   # Create mini sample with 3 genotype rows and 3 loci where the first only has 1 allele:
   # The genotype C2, BAD, will not be comparable with the others:
   #
   miniColnames  = c("IND","META","L1g","L2a","L2b","L3a","L3b")
   sample = t(data.frame(
-    c("F1","Focal",-99,"X","Y","X","Y"), # One incomparable locus
+    c("F1","Focal",-99,"X","Y","X","z"), # One incomparable locus
     c("C1","Good", -99,"X","Y","X","Y"), # Same incomparable locus => no effect
     c("C2","Bad",  "Y",-99,-99,"X","Y")  # Another incomparable locus => incomparable genotypes
   ))
@@ -142,7 +145,7 @@ test_that("Demo minComparableLoci for amUnique() with one sigle-allele locus", {
 
   expect_snapshot({
     "Here minComparableLoci = 2 => C2 is incomparable towards the other genotypes"
-    "(dissimilarity == 1 == 100%)"
+    "(dissimilarity == 1 == 100%), but still comparable towards itself."
     " ";
     "Note that the the dissimilarities between the other genotypes remain the same";
     "compared to the abowe run:";
